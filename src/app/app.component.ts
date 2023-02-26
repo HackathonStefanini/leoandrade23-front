@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { Jogador } from "./models/Jogador";
+import { JogadorService } from "./shared/services/jogador.service";
+import { AuthService } from "./shared/services/auth.service";
 
 @Component({
   selector: "app-root",
@@ -9,6 +11,12 @@ import { Jogador } from "./models/Jogador";
 })
 export class AppComponent implements OnInit {
   jogador: Jogador = new Jogador();
+  jogadorLogin: any;
+
+  constructor(
+    private jogadorService: JogadorService,
+    private authService: AuthService
+  ) {}
 
   title = "hackathon-angular";
   items: MenuItem[];
@@ -18,6 +26,21 @@ export class AppComponent implements OnInit {
   }
 
   login() {
-    console.log(this.jogador);
+    this.jogadorService.login(this.jogador).subscribe((jogador) => {
+      this.jogadorLogin = jogador;
+    });
+    if (verificaLogin(this.jogador, this.jogadorLogin)) {
+      console.log("Autenticado");
+      this.authService.login();
+    }
   }
+}
+
+function verificaLogin(jogador: Jogador, jogadorLogin: any) {
+  if (jogador.nickname == jogadorLogin[0].nickname) {
+    if (jogador.password == jogadorLogin[0].password) {
+      return true;
+    }
+  }
+  return false;
 }

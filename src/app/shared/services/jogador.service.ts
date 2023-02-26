@@ -15,4 +15,8 @@ export class JogadorService {
   salvarJogador(jogador: Jogador) {
     return this.$http.post(`${this.apiURL}/jogador`, jogador);
   }
+
+  login(jogador: Jogador) {
+    return this.$http.post(`${this.apiURL}/jogador/login`, jogador);
+  }
 }
