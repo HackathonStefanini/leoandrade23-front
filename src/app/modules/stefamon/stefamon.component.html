@@ -1,10 +1,22 @@
-<div style="width: 100%; display: flex; flex-grow: 1; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-  <ng-container *ngFor="let stefamon of stefamonList">
-    <p-card header="{{ stefamon.nome }}" styleClass="p-card-shadow"
-            [style]="{'width': '200px', 'margin-bottom': '2em'}">
+<div
+  style="
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  "
+>
+  <ng-container *ngFor="let stefamon of stefamons">
+    <p-card
+      header="{{ stefamon.nome }}"
+      styleClass="p-card-shadow"
+      [style]="{ width: '200px', 'margin-bottom': '2em' }"
+    >
       <p-header>
-        <div style="width: 100%; padding: 1rem;">
-          <img alt="Card" src="{{ stefamon.urlFoto }}">
+        <div style="width: 100%; padding: 1rem">
+          <img alt="Card" src="{{ stefamon.urlFoto }}" />
         </div>
       </p-header>
       <p>Atributos</p>

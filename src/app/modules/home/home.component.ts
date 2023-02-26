@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   salvarJogador() {
-    console.log(this.jogador);
     this.jogadorService.salvarJogador(this.jogador).subscribe();
   }
 }

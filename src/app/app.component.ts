@@ -3,6 +3,7 @@ import { MenuItem } from "primeng/api";
 import { Jogador } from "./models/Jogador";
 import { JogadorService } from "./shared/services/jogador.service";
 import { AuthService } from "./shared/services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private jogadorService: JogadorService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   title = "hackathon-angular";
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit {
     if (verificaLogin(this.jogador, this.jogadorLogin)) {
       console.log("Autenticado");
       this.authService.login();
+      this.router.navigate(["stefamon"]);
     }
   }
 }
